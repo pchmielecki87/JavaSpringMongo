@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${item.id == null ? 'Dodaj Przedmiot' : 'Edytuj Przedmiot'}"></title>
+</head>
+<body>
+    <h1 th:text="${item.id == null ? 'Dodaj Nowy Przedmiot' : 'Edytuj Przedmiot'}"></h1>
+    <form action="#" th:action="${item.id == null ? @{/items/add} : @{/items/edit/{id}(id=${item.id})}}" th:object="${item}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div>
+            <label for="name">Nazwa:</label>
+            <input type="text" id="name" th:field="*{name}" />
+        </div>
+        <div>
+            <label for="description">Opis:</label>
+            <textarea id="description" th:field="*{description}"></textarea>
+        </div>
+        <button type="submit">Zapisz</button>
+        <p><a href="/items">Powrót do listy</a></p>
+    </form>
+</body>
+</html>
